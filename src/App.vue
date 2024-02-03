@@ -1,6 +1,7 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 import { useColorMode } from '@vueuse/core'
+import IconMoon from './components/IconMoon.vue'
+import IconSun from './components/IconSun.vue'
 
 const colorMode = useColorMode()
 
@@ -11,31 +12,15 @@ const toggleMode = () => {
 
 <template>
   <div>
-    {{ colorMode }}
-    <button @click="toggleMode">Toggle mode</button>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <button @click="toggleMode" style="display: flex; align-items: center">
+      <IconSun v-if="colorMode === 'light'" />
+      <IconMoon v-else-if="colorMode === 'dark'" />
+      <IconCafe v-else />
+    </button>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 .dark {
   background-color: #333;
   color: white;
